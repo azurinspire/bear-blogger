@@ -2,8 +2,8 @@
 
 namespace Azurinspire\BearBlogger;
 
-use Illuminate\Support\ServiceProvider;
 use Azurinspire\BearBlogger\Commands\BearBloggerCommand;
+use Illuminate\Support\ServiceProvider;
 
 class BearBloggerServiceProvider extends ServiceProvider
 {

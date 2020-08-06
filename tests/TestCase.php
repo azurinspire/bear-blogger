@@ -2,8 +2,8 @@
 
 namespace Azurinspire\BearBlogger\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Azurinspire\BearBlogger\BearBloggerServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
