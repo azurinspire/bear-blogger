@@ -1,6 +1,6 @@
 <?php
 
-namespace Azurinspire\BearBlogger\Tests;
+namespace AzurInspire\BearBlogger\Tests;
 
 class ExampleTest extends TestCase
 {

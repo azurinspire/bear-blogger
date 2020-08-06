@@ -1,9 +1,9 @@
 <?php
 
-namespace Azurinspire\BearBlogger\Tests;
+namespace AzurInspire\BearBlogger\Tests;
 
+use AzurInspire\BearBlogger\BearBloggerServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Azurinspire\BearBlogger\BearBloggerServiceProvider;
 
 class TestCase extends Orchestra
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Azurinspire\BearBlogger;
+namespace AzurInspire\BearBlogger;
 
 class BearBlogger
 {

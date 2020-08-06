@@ -1,17 +1,17 @@
 {
-    "name": "spatie/bear-blogger",
+    "name": "azurinspire/bear-blogger",
     "description": "Blog from Bear App",
     "keywords": [
-        "spatie",
+        "azurinspire",
         "bear-blogger"
     ],
-    "homepage": "https://github.com/spatie/bear-blogger",
+    "homepage": "https://github.com/azurinspire/bear-blogger",
     "license": "MIT",
     "authors": [
         {
             "name": "Kalle Pyörälä",
             "email": "kalle.pyorala@azurinspire.com",
-            "homepage": "https://spatie.be",
+            "homepage": "https://azurinspirecom",
             "role": "Developer"
         }
     ],
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Azurinspire\\BearBlogger\\": "src"
+            "AzurInspire\\BearBlogger\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Azurinspire\\BearBlogger\\Tests\\": "tests"
+            "AzurInspire\\BearBlogger\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,10 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Azurinspire\\BearBlogger\\BearBloggerServiceProvider"
+                "AzurInspire\\BearBlogger\\BearBloggerServiceProvider"
             ],
             "aliases": {
-                "BearBlogger": "Azurinspire\\BearBlogger\\BearBloggerFacade"
+                "BearBlogger": "AzurInspire\\BearBlogger\\BearBloggerFacade"
             }
         }
     },

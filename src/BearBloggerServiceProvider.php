@@ -1,9 +1,9 @@
 <?php
 
-namespace Azurinspire\BearBlogger;
+namespace AzurInspire\BearBlogger;
 
+use AzurInspire\BearBlogger\Commands\BearBloggerCommand;
 use Illuminate\Support\ServiceProvider;
-use Azurinspire\BearBlogger\Commands\BearBloggerCommand;
 
 class BearBloggerServiceProvider extends ServiceProvider
 {

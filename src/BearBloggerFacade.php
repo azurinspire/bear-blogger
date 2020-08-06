@@ -1,11 +1,11 @@
 <?php
 
-namespace Azurinspire\BearBlogger;
+namespace AzurInspire\BearBlogger;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Azurinspire\BearBlogger\BearBlogger
+ * @see \AzurInspire\BearBlogger\BearBlogger
  */
 class BearBloggerFacade extends Facade
 {

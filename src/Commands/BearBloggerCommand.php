@@ -1,6 +1,6 @@
 <?php
 
-namespace Azurinspire\BearBlogger\Commands;
+namespace AzurInspire\BearBlogger\Commands;
 
 use Illuminate\Console\Command;
 

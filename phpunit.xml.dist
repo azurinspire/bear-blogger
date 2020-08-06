@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Azurinspire Test Suite">
+        <testsuite name="AzurInspire Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

@@ -1,40 +1,30 @@
 # Blog from Bear App
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/bear-blogger.svg?style=flat-square)](https://packagist.org/packages/spatie/bear-blogger)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/bear-blogger/run-tests?label=tests)](https://github.com/spatie/bear-blogger/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/bear-blogger.svg?style=flat-square)](https://packagist.org/packages/spatie/bear-blogger)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/azurinspire/bear-blogger.svg?style=flat-square)](https://packagist.org/packages/azurinspire/bear-blogger)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/azurinspire/bear-blogger/run-tests?label=tests)](https://github.com/azurinspire/bear-blogger/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/azurinspire/bear-blogger.svg?style=flat-square)](https://packagist.org/packages/azurinspire/bear-blogger)
 
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-Learn how to create a package like this one, by watching our premium video course:
-
-[![Laravel Package training](https://spatie.be/github/package-training.jpg)](https://laravelpackage.training)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require spatie/package-bear-blogger-laravel
+composer require azurinspire/bear-blogger
 ```
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Azurinspire\BearBlogger\BearBloggerServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="AzurInspire\BearBlogger\BearBloggerServiceProvider" --tag="migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Azurinspire\BearBlogger\BearBloggerServiceProvider" --tag="config"
+php artisan vendor:publish --provider="AzurInspire\BearBlogger\BearBloggerServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
@@ -47,8 +37,8 @@ return [
 ## Usage
 
 ``` php
-$bear-blogger = new Azurinspire\BearBlogger();
-echo $bear-blogger->echoPhrase('Hello, Azurinspire!');
+$bear-blogger = new AzurInspire\BearBlogger();
+echo $bear-blogger->echoPhrase('Hello, AzurInspire!');
 ```
 
 ## Testing
@@ -67,12 +57,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
+If you discover any security related issues, please email me@azurinspire.com instead of using the issue tracker.
 
 ## Credits
 
 - [Kalle Pyörälä](https://github.com/azurinspire)
-- [All Contributors](../../contributors)
 
 ## License
 
