@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\Skeleton\Commands;
+namespace Azurinspire\BearBlogger\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class BearBloggerCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'bear-blogger';
 
     public $description = 'My command';
 

@@ -1,10 +1,9 @@
-# :package_description
+# Blog from Bear App
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/:package_name/run-tests?label=tests)](https://github.com/spatie/:package_name/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/bear-blogger.svg?style=flat-square)](https://packagist.org/packages/spatie/bear-blogger)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/bear-blogger/run-tests?label=tests)](https://github.com/spatie/bear-blogger/actions?query=workflow%3Arun-tests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/bear-blogger.svg?style=flat-square)](https://packagist.org/packages/spatie/bear-blogger)
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can also run `configure-skeleton.sh` to do this automatically.
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
@@ -23,19 +22,19 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-composer require spatie/package-skeleton-laravel
+composer require spatie/package-bear-blogger-laravel
 ```
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Azurinspire\BearBlogger\BearBloggerServiceProvider" --tag="migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Spatie\Skeleton\SkeletonServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Azurinspire\BearBlogger\BearBloggerServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
@@ -48,8 +47,8 @@ return [
 ## Usage
 
 ``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+$bear-blogger = new Azurinspire\BearBlogger();
+echo $bear-blogger->echoPhrase('Hello, Azurinspire!');
 ```
 
 ## Testing
@@ -72,7 +71,7 @@ If you discover any security related issues, please email freek@spatie.be instea
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Kalle Pyörälä](https://github.com/azurinspire)
 - [All Contributors](../../contributors)
 
 ## License
