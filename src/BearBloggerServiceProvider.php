@@ -3,6 +3,14 @@
 namespace AzurInspire\BearBlogger;
 
 use AzurInspire\BearBlogger\Commands\BearBloggerCommand;
+use AzurInspire\BearBlogger\Http\Controllers\FetchController;
+use AzurInspire\BearBlogger\Http\Controllers\PromoteController;
+use AzurInspire\BearBlogger\Http\Controllers\PublishController;
+use AzurInspire\BearBlogger\Http\Controllers\UploadController;
+use AzurInspire\BearBlogger\View\Components\BlogAdmin;
+use AzurInspire\BearBlogger\View\Components\ImageUploader;
+use AzurInspire\BearBlogger\View\Components\PromoteHero;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class BearBloggerServiceProvider extends ServiceProvider
@@ -30,6 +38,23 @@ class BearBloggerServiceProvider extends ServiceProvider
         }
 
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'bear-blogger');
+        $this->loadViewComponentsAs('bear-blogger', [
+            BlogAdmin::class,
+            ImageUploader::class,
+            PromoteHero::class,
+        ]);
+
+
+        Route::macro('bearBlogger', function () {
+            Route::prefix('bear-blogger')->group(function () {
+                Route::post('fetch', [FetchController::class, 'store'])->name('bear-blogger.fetch.all');
+                Route::post('{blogPost:slug}/fetch', [FetchController::class, 'update'])->name('bear-blogger.fetch');
+                Route::post('{blogPost:slug}/publish', [PublishController::class, 'store'])->name('bear-blogger.publish');
+                Route::post('{blogPost:slug}/promote/{media:id}', [PromoteController::class, 'update'])->name('bear-blogger.promote');
+                Route::post('{blogPost:slug}/upload', [UploadController::class, 'store'])->name('bear-blogger.upload');
+                Route::delete('{blogPost:slug}/upload', [UploadController::class, 'destroy'])->name('bear-blogger.upload');
+            });
+        });
     }
 
     public function register()
