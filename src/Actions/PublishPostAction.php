@@ -9,11 +9,12 @@ class PublishPostAction
 {
     public function execute(BlogPost $blogPost)
     {
-        $remotePost = DB::connection('production')->table('blog_posts')->where('bear_id', $blogPost->bear_id)->first();
-        $content = DB::table('blog_posts')->select('content')->where('bear_id', $blogPost->bear_id)->first();
+        $remotePost = DB::connection('production')->table('blog_posts')->where('id', $blogPost->id)->first();
+        $content = DB::table('blog_posts')->select('content')->where('id', $blogPost->id)->first();
 
         if (! $remotePost) {
             DB::connection('production')->table('blog_posts')->insert([
+                'id' => $blogPost->id,
                 'bear_id' => $blogPost->bear_id,
                 'slug' => $blogPost->slug,
                 'title' => $blogPost->title,
@@ -45,7 +46,7 @@ class PublishPostAction
             return ['published' => false, 'topics' => $topicInsert, 'images' => $imagesInsert];
         }
 
-        DB::connection('production')->table('blog_posts')->where('bear_id', $blogPost->bear_id)->update([
+        DB::connection('production')->table('blog_posts')->where('id', $blogPost->id)->update([
             'title' => $blogPost->title,
             'content' => $content->content,
             'checksum' => $blogPost->checksum,

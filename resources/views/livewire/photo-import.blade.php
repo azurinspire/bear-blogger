@@ -12,8 +12,9 @@
                 @if ($directory && count($files))
                     <div x-data="fileImport()">
                         <button @click="go" {{ $status === 'uploading' ? 'disabled' : '' }} class="flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-{{ $color ?? 'indigo' }}-600 hover:bg-{{ $color ?? 'indigo' }}-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                            <span x-show="!uploading" class="mr-2">GO!</span>
-                            <i x-show="uploading" class="fas fa-spinner fa-spin mr-2"></i> ({{ count($photos) }}/{{ count($files)  }})
+                            <span wire:loading.remove class="mr-2">GO!</span>
+                            <i wire:loading class="fas fa-spinner fa-spin mr-2"></i>
+                            <span>({{ count($photos) }}/{{ count($files)  }})</span>
                         </button>
                     </div>
                 @elseif ($directory)
@@ -24,7 +25,8 @@
                 <div class="mr-2">|</div>
                 @if ($type === 'gallery')
                     <button wire:click="publish" class="mr-2 flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-{{ $color ?? 'indigo' }}-600 hover:bg-{{ $color ?? 'indigo' }}-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
-                        Publish
+                        <div wire:loading class="mr-2"><i class="fas fa-spinner fa-spin"></i></div>
+                        <span>Publish</span>
                     </button>
                 @endif
                 <a href="?hide=1" class="flex items-center justify-center px-5 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-{{ $color ?? 'indigo' }}-600 hover:bg-{{ $color ?? 'indigo' }}-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
@@ -36,13 +38,7 @@
             let index = 0;
             function fileImport() {
                 return {
-                    uploading: false,
                     go() {
-                        if (this.uploading) {
-                            return;
-                        }
-
-                        this.uploading = true;
                         index = 0;
 
                         @this.set('status', 'uploading');
@@ -67,7 +63,6 @@
                         importOne(files);
                     }, 1000);
                 } else {
-                    this.uploading = false;
                     @this.set('status', 'uploaded');
                 }
             }

@@ -5,6 +5,7 @@ namespace AzurInspire\BearBlogger\Http\Livewire;
 use AzurInspire\BearBlogger\Actions\PublishGalleryAction;
 use AzurInspire\BearBlogger\Models\BlogPost;
 use AzurInspire\BearBlogger\Models\Gallery;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -151,7 +152,17 @@ class PhotoImport extends Component
 
     public function publish()
     {
+        try {
+            DB::connection('production')->getPdo();
+        } catch (\Exception $e) {
+            $this->emit('alert', 'npm run tunnel!', 'error');
+
+            return;
+        }
+
         (new PublishGalleryAction)->execute($this->modelId);
+
+        $this->emit('alert', 'Published!', 'success');
     }
 
     public function render()

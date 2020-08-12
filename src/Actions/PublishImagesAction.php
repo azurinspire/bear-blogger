@@ -36,17 +36,13 @@ class PublishImagesAction
 
                 $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(storage_path('app/public/' . $media->id)));
 
-                $files = [];
-
                 foreach ($rii as $file) {
                     if ($file->isDir()) {
                         continue;
                     }
-
-                    $files[] = $file->getPathname();
+                    $file = str_replace('/Users/kalle/Projects/azurinspire/kallepyorala-com/storage/app/', '', $file->getPathname());
+                    Storage::disk('sftp')->writeStream('/kallepyorala.com/storage/app/' . $file, Storage::readStream($file));
                 }
-
-                Storage::disk('FTP')->writeStream('new/file1.jpg', Storage::readStream('old/file1.jpg'));
 
                 $inserts++;
             }

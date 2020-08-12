@@ -3,9 +3,7 @@
 namespace AzurInspire\BearBlogger\View\Components;
 
 use AzurInspire\BearBlogger\Models\BlogPost;
-use AzurInspire\BearBlogger\Models\Gallery as GalleryModel;
 use Illuminate\View\Component;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Gallery extends Component
 {
@@ -18,28 +16,13 @@ class Gallery extends Component
 
     public $type;
 
-    public $recent = false;
-
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($model, $recent = false)
+    public function __construct($model)
     {
-        $this->recent = $recent;
-
-        if ($this->recent) {
-            $this->type = 'gallery';
-            $this->photos = Media::query()
-                ->whereModelType(GalleryModel::class)
-                ->orderBy('created_at', 'DESC')
-                ->limit(20)
-                ->get();
-
-            return;
-        }
-
         $this->model = $model;
 
         if ($model instanceof BlogPost) {
@@ -58,7 +41,7 @@ class Gallery extends Component
      */
     public function render()
     {
-        if (config('app.env') === 'local' && ! $this->recent) {
+        if (config('app.env') === 'local') {
             $this->edit = true;
         }
 
