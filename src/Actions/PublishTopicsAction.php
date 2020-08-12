@@ -12,8 +12,8 @@ class PublishTopicsAction
         $inserts = 0;
 
         $post->topics->each(function ($topic) use ($post, &$inserts) {
-            if (DB::connection('production')->table('topics')->where('id', $topic->id)->doesntExist()) {
-                $remoteTopicId = DB::connection('production')->table('topics')->insertGetId([
+            if (DB::connection('production')->table('blog_topics')->where('id', $topic->id)->doesntExist()) {
+                $remoteTopicId = DB::connection('production')->table('blog_topics')->insertGetId([
                     'id' => $topic->id,
                     'slug' => $topic->slug,
                     'name' => $topic->name,
@@ -21,7 +21,7 @@ class PublishTopicsAction
                     'updated_at' => now(),
                 ]);
 
-                DB::connection('production')->table('post_topic')->insert([
+                DB::connection('production')->table('blog_post_blog_topic')->insert([
                     'blog_post_id' => $post->id,
                     'blog_topic_id' => $remoteTopicId,
                     'created_at' => now(),

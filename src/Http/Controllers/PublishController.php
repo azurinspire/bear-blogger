@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class PublishController
 {
-    public function store(BlogPost $post)
+    public function store(BlogPost $blogPost)
     {
         try {
             DB::connection('production')->getPdo();
@@ -18,12 +18,12 @@ class PublishController
                 ->with('message', 'DB not found - <i>npm run tunnel</i>');
         }
 
-        $result = (new PublishPostAction)->execute($post);
+        $result = (new PublishPostAction)->execute($blogPost);
 
         $categoryMessage = ($result['topics'] ? ' (' . $result['topics'] . ' topics created)' : '');
 
         if ($result['published']) {
-            $message = 'Published! <a href="https://www.azurinspire.com/blog/' . $post->slug .'" target="_blank" class="underline text-blue-500">Preview</a>';
+            $message = 'Published! <a href="https://www.azurinspire.com/blog/' . $blogPost->slug .'" target="_blank" class="underline text-blue-500">Preview</a>';
         } else {
             $message = 'No changes!';
         }

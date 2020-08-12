@@ -35,6 +35,14 @@ class CreateBearBloggerTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('galleries', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug');
+            $table->timestamps();
+        });
+
+
         Schema::create('media', function (Blueprint $table) {
             $table->bigIncrements('id');
 
@@ -66,6 +74,7 @@ class CreateBearBloggerTable extends Migration
         Schema::dropIfExists('blog_posts');
         Schema::dropIfExists('blog_topics');
         Schema::dropIfExists('blog_post_blog_topic');
+        Schema::dropIfExists('galleries');
         Schema::dropIfExists('media');
     }
 }

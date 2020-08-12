@@ -1,18 +1,18 @@
 <?php
 namespace AzurInspire\BearBlogger\Actions;
 
-use AzurInspire\BearBlogger\Models\BlogPost;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
-class PublishMediaAction
+class PublishImagesAction
 {
-    public function execute(BlogPost $post)
+    public function execute($model)
     {
         $inserts = 0;
 
-        $post->getMedia()->each(function ($media) use ($post, &$inserts) {
+        $model->getMedia()->each(function ($media) use (&$inserts) {
             if (DB::connection('production')->table('media')->where('id', $media->id)->doesntExist()) {
                 DB::connection('production')->table('media')->insert([
                     'id' => $media->id,
@@ -26,18 +26,27 @@ class PublishMediaAction
                     'disk' => $media->disk,
                     'conversions_disk' => $media->conversions_disk,
                     'size' => $media->size,
-                    'manipulations' => $media->manipulations,
-                    'custom_properties' => $media->custom_properties,
-                    'responsive_images' => $media->responsive_images,
+                    'manipulations' => json_encode($media->manipulations),
+                    'custom_properties' => json_encode($media->custom_properties),
+                    'responsive_images' => json_encode($media->responsive_images),
                     'order_column' => $media->order_column,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
 
-                $files = File::files(public_path($media->id));
-                dd($files);
-                Storage::disk('FTP')->writeStream('new/file1.jpg', Storage::readStream('old/file1.jpg'));
+                $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(storage_path('app/public/' . $media->id)));
 
+                $files = [];
+
+                foreach ($rii as $file) {
+                    if ($file->isDir()) {
+                        continue;
+                    }
+
+                    $files[] = $file->getPathname();
+                }
+
+                Storage::disk('FTP')->writeStream('new/file1.jpg', Storage::readStream('old/file1.jpg'));
 
                 $inserts++;
             }

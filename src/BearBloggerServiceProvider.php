@@ -4,14 +4,18 @@ namespace AzurInspire\BearBlogger;
 
 use AzurInspire\BearBlogger\Commands\BearBloggerCommand;
 use AzurInspire\BearBlogger\Http\Controllers\FetchController;
+use AzurInspire\BearBlogger\Http\Controllers\ImportController;
 use AzurInspire\BearBlogger\Http\Controllers\PromoteController;
 use AzurInspire\BearBlogger\Http\Controllers\PublishController;
 use AzurInspire\BearBlogger\Http\Controllers\UploadController;
+use AzurInspire\BearBlogger\Http\Livewire\PhotoImport;
 use AzurInspire\BearBlogger\View\Components\BlogAdmin;
+use AzurInspire\BearBlogger\View\Components\Gallery;
 use AzurInspire\BearBlogger\View\Components\ImageUploader;
 use AzurInspire\BearBlogger\View\Components\PromoteHero;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class BearBloggerServiceProvider extends ServiceProvider
 {
@@ -42,8 +46,10 @@ class BearBloggerServiceProvider extends ServiceProvider
             BlogAdmin::class,
             ImageUploader::class,
             PromoteHero::class,
+            Gallery::class,
         ]);
 
+        Livewire::component('bear-blogger::photo-import', PhotoImport::class);
 
         Route::macro('bearBlogger', function () {
             Route::prefix('bear-blogger')->group(function () {
@@ -53,6 +59,7 @@ class BearBloggerServiceProvider extends ServiceProvider
                 Route::post('{blogPost:slug}/promote/{media:id}', [PromoteController::class, 'update'])->name('bear-blogger.promote');
                 Route::post('{blogPost:slug}/upload', [UploadController::class, 'store'])->name('bear-blogger.upload');
                 Route::delete('{blogPost:slug}/upload', [UploadController::class, 'destroy'])->name('bear-blogger.upload');
+                Route::get('import/preview/{directory}/{photo}', [ImportController::class, 'preview'])->name('bear-blogger.import.preview');
             });
         });
     }

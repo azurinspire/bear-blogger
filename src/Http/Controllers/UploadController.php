@@ -10,9 +10,21 @@ class UploadController
 {
     public function store(BlogPost $blogPost)
     {
+        [$width, $height] = getimagesize(request()->file('filepond'));
+
+        $order = session('order') + 1;
+        session(['order' => $order]);
+
         $mediaItem = $blogPost
             ->addMedia(request()->file('filepond'))
             ->withResponsiveImages()
+            ->withCustomProperties([
+                'original_width' => $width,
+                'original_height' => $height,
+                'orientation' => $width > $height ? 'landscape' : 'portrait',
+            ])->withAttributes([
+                'order_column' => $order,
+            ])
             ->toMediaCollection();
 
         return $mediaItem->id;

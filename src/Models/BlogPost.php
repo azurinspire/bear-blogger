@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class BlogPost extends Model implements HasMedia
 {
@@ -41,5 +42,25 @@ class BlogPost extends Model implements HasMedia
     public function images()
     {
         return $this->hasMany(BlogImage::class);
+    }
+
+    public function heroImage($type = 'responsive')
+    {
+        $heroImage = Media::find($this->hero_media_id);
+
+        if (! $heroImage) {
+            return;
+        }
+
+        if ($type === 'small') {
+            return collect($heroImage->getResponsiveImageUrls())->last();
+        }
+
+        if ($type === 'medium') {
+            return collect($heroImage->getResponsiveImageUrls())->get(6);
+        }
+
+
+        return $heroImage;
     }
 }
